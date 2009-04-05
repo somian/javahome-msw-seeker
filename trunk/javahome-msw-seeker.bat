@@ -1,16 +1,16 @@
 @Echo OFF
 :: $Author: somian $
 :: $RCSfile: javahome-msw-seeker.bat,v $
-:: $Revision: 1.3 $
-:: $Date: 2009/04/05 05:09:26 $
+:: $Revision: 1.4 $
+:: $Date: 2009/04/05 17:51:34 $
 :: Purpose: set JAVA_HOME env var
-rem Echo This script lives in %~p0
 
 SETLOCAL
-SET YIT=
-IF NOT "%0:~-4%" == ".bat" SET YIT=.bat
-
-FOR /f %%J IN ('perl -x %0%YIT%') DO @(ENDLOCAL
+SET YIT=.bat
+IF [%~x0]==[.bat] SET YIT=
+SET THISFILE=%~f0%YIT%
+rem @Echo Looking for %THISFILE%
+FOR /f %%J IN ('perl -x %THISFILE%') DO @(ENDLOCAL
 SET JAVA_HOME=%%J
 )
 GoTo :THATSALL
